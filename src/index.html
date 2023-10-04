@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Page title</title>
-        <link rel="stylesheet" href="./partials/styles.css" />
-        <script type="module" src="./index.js"></script>
-    </head>
 
-    <body>
-        <div class="wrapper">
-            <form class="search-form" id="search-form">
-                <input
-                    type="text"
-                    name="searchQuery"
-                    autocomplete="off"
-                    placeholder="Search images..."
-                />
-                <button type="submit">Search</button>
-            </form>
-        </div>
-    </body>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.2/simple-lightbox.min.css"
+        integrity="sha512-FaAQujRxLMvw+BkmGN3w7u9EdQQr1t0vQoY8KDh09+6SFaWSTe+KrT8oCWg25X91hytm5c5BTmiSGQejkraaZg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/simplelightbox/2.14.2/simple-lightbox.min.js"
+        integrity="sha512-/4kQE5RJQYHRhUiK+CZS8UhaJTnLmQkDuf8lOhiP2xLdjthA/rm0VqqWjcyelIx+NDyNHFmtqvuIgOFQnI34WA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script type="module" src="./index.js"></script>
+</head>
+
+<body>
+    <div class="search">
+        <form class="search-form" id="search-form">
+            <input type="text" name="searchQuery" autocomplete="off" placeholder="Search images..." />
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
+    <ul class="gallery"></ul>
+    <div class="target"></div>
+</body>
+
 </html>
