@@ -1,0 +1,15 @@
+@import "../../node_modules/modern-normalize/modern-normalize.css";
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    background-color: #153aaa;
+    padding: 20px 0;
+}
+.search-form {
+}
+
+input[name="searchQuery"] {
+    display: inline-block;
+    width: 130px;
+}
