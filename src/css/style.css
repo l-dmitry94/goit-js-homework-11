@@ -11,6 +11,10 @@ ul {
 }
 
 .search {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     display: flex;
     justify-content: center;
     font-family: 'Roboto';
@@ -53,7 +57,7 @@ button[type='submit'] {
     display: flex;
     flex-wrap: wrap;
     gap: 25px;
-    padding: 20px;
+    padding: 100px 20px 20px;
 }
 
 .photo-card {
