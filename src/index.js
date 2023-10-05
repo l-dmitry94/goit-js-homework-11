@@ -37,8 +37,8 @@ async function handlerForm(event) {
 
     observer.unobserve(refs.target);
 
-    const { searchQuery } = event.currentTarget.elements;
-    inputValue = searchQuery.value.trim();
+    const inputValue = formValue(event);
+
     if (!inputValue) {
         Notiflix.Notify.warning(
             'Please enter your search query before clicking the search button'
@@ -46,12 +46,8 @@ async function handlerForm(event) {
         return;
     }
 
-    Notiflix.Loading.standard();
-
     try {
         const data = await getImages(inputValue, currentPage);
-
-        Notiflix.Loading.remove();
 
         refs.searchQuery.value = '';
 
@@ -64,10 +60,7 @@ async function handlerForm(event) {
 
         Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
 
-        refs.galleryList.insertAdjacentHTML(
-            'beforeend',
-            createMarkup(data.hits)
-        );
+        addImagesToGallery(data);
 
         observer.observe(refs.target);
 
@@ -80,16 +73,10 @@ async function handlerForm(event) {
 async function onLoad(entries, observer) {
     entries.forEach(async entry => {
         if (entry.isIntersecting) {
-            Notiflix.Loading.standard();
             try {
                 const data = await getImages(inputValue, (currentPage += 1));
 
-                Notiflix.Loading.remove();
-
-                refs.galleryList.insertAdjacentHTML(
-                    'beforeend',
-                    createMarkup(data.hits)
-                );
+                addImagesToGallery(data);
 
                 lightbox.refresh();
 
@@ -108,6 +95,8 @@ async function onLoad(entries, observer) {
 }
 
 async function getImages(name, page) {
+    Notiflix.Loading.standard();
+
     const BASE_URL = 'https://pixabay.com/api/';
     const API_KEY = '39796826-5323de49fb67ecd68459fdb2a';
 
@@ -125,6 +114,8 @@ async function getImages(name, page) {
         method: 'GET',
         url: `${BASE_URL}?${params}`,
     });
+
+    Notiflix.Loading.remove();
 
     return response.data;
 }
@@ -167,6 +158,17 @@ function createMarkup(arr) {
     `
         )
         .join('');
+}
+
+function addImagesToGallery(data) {
+    refs.galleryList.insertAdjacentHTML('beforeend', createMarkup(data.hits));
+}
+
+function formValue(event) {
+    const { searchQuery } = event.currentTarget.elements;
+    inputValue = searchQuery.value.trim();
+
+    return inputValue;
 }
 
 Notiflix.Notify.init({
