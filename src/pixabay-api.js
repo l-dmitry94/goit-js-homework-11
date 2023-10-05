@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+import Notiflix from 'notiflix';
+import 'notiflix/dist/notiflix-3.2.6.min.css';
+
 export async function getImages(name, page) {
     Notiflix.Loading.standard();
 

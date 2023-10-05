@@ -1,4 +1,4 @@
-import getImages  from './pixabay-api';
+import { getImages } from './pixabay-api';
 
 import Notiflix from 'notiflix';
 import 'notiflix/dist/notiflix-3.2.6.min.css';
@@ -37,7 +37,8 @@ async function handlerForm(event) {
 
     observer.unobserve(refs.target);
 
-    const inputValue = formValue(event);
+    const { searchQuery } = event.currentTarget.elements;
+    inputValue = searchQuery.value.trim();
 
     if (!inputValue) {
         Notiflix.Notify.warning(
@@ -94,7 +95,6 @@ async function onLoad(entries, observer) {
     });
 }
 
-
 function createMarkup(arr) {
     return arr
         .map(
@@ -137,13 +137,6 @@ function createMarkup(arr) {
 
 function addImagesToGallery(data) {
     refs.galleryList.insertAdjacentHTML('beforeend', createMarkup(data.hits));
-}
-
-function formValue(event) {
-    const { searchQuery } = event.currentTarget.elements;
-    inputValue = searchQuery.value.trim();
-
-    return inputValue;
 }
 
 Notiflix.Notify.init({
