@@ -7,7 +7,7 @@ export async function getImages(name, page) {
     Notiflix.Loading.standard();
 
     const BASE_URL = 'https://pixabay.com/api/';
-    const API_KEY = '39796826-5323de49fb67ecd68459fdb2a';
+    const API_KEY = '41528122-08bf6ff4052e91093ac35f1ea';
 
     const params = new URLSearchParams({
         q: name,
